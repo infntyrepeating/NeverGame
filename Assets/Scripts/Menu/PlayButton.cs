@@ -63,10 +63,7 @@ public class PlayButton : MonoBehaviour
         // Trigger the animation
         m_Animation.SetTrigger("Play");
 
-        while (m_Animation.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(2.0f);
 
         // Call the function to change the scene
         ChangeScene();
