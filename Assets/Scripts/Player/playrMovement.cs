@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float baseSpeed = 5.0f;
+    public Tilemap groundTilemap;
 
     private Rigidbody2D body;
     private Vector2 lastMovementDirection;
+    private BoxCollider2D playerCollider;
+    private Vector3 nextPosition;
 
     public Animator m_Animation;
     private SpriteRenderer spriteRenderer;
@@ -21,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -34,9 +39,50 @@ public class PlayerMovement : MonoBehaviour
             lastMovementDirection = movement;
         }
 
-        body.velocity = new Vector2(movement.x * baseSpeed, movement.y * baseSpeed);
+        // Calculate the next position
+        nextPosition = transform.position + new Vector3(movement.x * baseSpeed, movement.y * baseSpeed, 0f);
 
-        UpdateAnimationAndSprite(movement);
+        // Check if the next position is within the tilemap bounds
+        if (IsNextPositionValid(nextPosition))
+        {
+            body.velocity = new Vector2(movement.x * baseSpeed, movement.y * baseSpeed);
+            UpdateAnimationAndSprite(movement);
+        }
+        else
+        {
+            body.velocity = Vector2.zero;
+        }
+    }
+
+    private bool IsNextPositionValid(Vector3 position)
+    {
+        // Check if the entire bounding box of the player is within the tilemap bounds
+        if (groundTilemap == null)
+        {
+            Debug.LogError("Ground Tilemap not assigned to PlayerMovement script.");
+            return false;
+        }
+
+        Bounds bounds = playerCollider.bounds;
+        BoundsInt boundsInt = new BoundsInt((int)bounds.min.x, (int)bounds.min.y, (int)bounds.min.z, (int)bounds.size.x, (int)bounds.size.y, (int)bounds.size.z);
+
+
+        for (int x = boundsInt.x; x < boundsInt.x + boundsInt.size.x; x++)
+        {
+            for (int y = boundsInt.y; y < boundsInt.y + boundsInt.size.y; y++)
+            {
+                Vector3Int cellPosition = new Vector3Int(x, y, 0);
+                
+                // Check if the cell position is within the bounds of the tilemap
+                if (!groundTilemap.HasTile(cellPosition))
+                {
+                    return false;
+                }
+            }
+        }
+
+
+        return true;
     }
 
     private void UpdateAnimationAndSprite(Vector2 movement)
@@ -102,6 +148,6 @@ public class PlayerMovement : MonoBehaviour
         {
             // Default sprite when no movement
             return downChar;
-        }
     }
+}
 }
