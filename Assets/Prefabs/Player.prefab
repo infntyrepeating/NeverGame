@@ -327,6 +327,12 @@ MonoBehaviour:
   downCharS: {fileID: -936963308, guid: c5a03018f8bd6d64c99b9b8b954712eb, type: 3}
   rightCharS: {fileID: 29111429, guid: c5a03018f8bd6d64c99b9b8b954712eb, type: 3}
   leftCharS: {fileID: 1297729656, guid: c5a03018f8bd6d64c99b9b8b954712eb, type: 3}
+  destroyRadius: 5
+  coneAngle: 30
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  attackPrefab: {fileID: 294028108857010487, guid: f870e1a826e199247a4bb5e1e0a10efc, type: 3}
 --- !u!95 &6322450526282561619
 Animator:
   serializedVersion: 5

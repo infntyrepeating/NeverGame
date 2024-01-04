@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Toolbar : MonoBehaviour
 {
     public GameObject Barrier;
+    public GameObject playerLoc;
 
     public UnityEngine.UI.Image Offense;
     public UnityEngine.UI.Image Defense;
@@ -15,7 +16,7 @@ public class Toolbar : MonoBehaviour
 
     public static bool UtilityLocked = true;
     public static bool DefenseLocked = false;
-    public static bool OffenseLocked = true;
+    public static bool OffenseLocked = false;
 
     public static float OffenseCD = 5f;
     public static float DefenseCD = 10f;
@@ -256,9 +257,15 @@ public class Toolbar : MonoBehaviour
     private IEnumerator StartOffCooldown(float cooldownDuration)
     {
         OffenseOnCooldown = true;
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition).normalized;
-        mousePosition.z = 0f;
-        destroyer.DestroyObjectsInConeArea(Barrier.transform.position, mousePosition);
+        var mousePos = Input.mousePosition;
+        mousePos.x -= Screen.width/2;
+        mousePos.y -= Screen.height/2;
+
+        // Calculate the direction vector from the center of the screen to the mouse position.
+        Vector2 directionToMouse = (Vector2)mousePos;
+
+        directionToMouse.Normalize();
+        destroyer.DestroyObjectsInConeArea(playerLoc.transform.position, directionToMouse);
 
         // Wait for the cooldown duration
         yield return new WaitForSeconds(cooldownDuration);

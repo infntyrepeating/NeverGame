@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     public float destroyRadius = 5f;
     public float coneAngle = 30f;
     public LayerMask targetLayer;
+
+    public GameObject attackPrefab;
 
     private void Start()
     {
@@ -188,37 +191,24 @@ private void OnTriggerEnter2D(Collider2D other)
         }
     }
 
-public void DestroyObjectsInConeArea(Vector3 origin, Vector3 coneDirection)
-    {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(origin, destroyRadius, targetLayer);
+public void DestroyObjectsInConeArea(Vector3 origin, Vector3 attackDirection)
+    {       
 
-        foreach (Collider2D hitCollider in hitColliders)
-        {
-            Vector3 directionToCollider = (hitCollider.transform.position - origin).normalized;
-            float angleToCollider = Vector3.Angle(transform.up, directionToCollider);
+            float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+            angle -= 90f;
+            // Get the rotation of the rotationReference object
+            Quaternion referenceRotation = transform.rotation;
 
-            if (angleToCollider <= coneAngle / 2f)
-            {
-                // Destroy the GameObject within the cone and specified layer
-                Destroy(hitCollider.gameObject);
-            }
-        }
+            // Apply the rotation to the attack prefab
+            Quaternion finalRotation = Quaternion.AngleAxis(angle, Vector3.forward) * referenceRotation;
+
+            // Instantiate attack object with the final rotation
+            GameObject attackInstance = Instantiate(attackPrefab, transform.position, finalRotation);
+
+            // Move the attack object in the direction of the mouse
+            attackInstance.GetComponent<Rigidbody2D>().velocity = attackDirection.normalized * 8f;
+
     }   
-private void OnDrawGizmos()
-    {
-            // Draw cone visualization in the scene view
-            Vector3 forward = Camera.main.ScreenToWorldPoint(Input.mousePosition).normalized;
-            Vector3 coneDirection1 = Quaternion.AngleAxis(-coneAngle / 2f, Vector3.forward) * forward;
-            Vector3 coneDirection2 = Quaternion.AngleAxis(coneAngle / 2f, Vector3.forward) * forward;
-
-            Gizmos.color = Color.red;
-
-            Gizmos.DrawRay(transform.position, coneDirection1 * destroyRadius);
-            Gizmos.DrawRay(transform.position, coneDirection2 * destroyRadius);
-
-            Gizmos.DrawLine(transform.position + coneDirection1 * destroyRadius, transform.position + coneDirection2 * destroyRadius);
-            Gizmos.DrawLine(transform.position - coneDirection1 * destroyRadius, transform.position - coneDirection2 * destroyRadius);
-    }
 
 }
 
