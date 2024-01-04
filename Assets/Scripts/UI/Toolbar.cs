@@ -7,15 +7,19 @@ using UnityEngine.UI;
 
 public class Toolbar : MonoBehaviour
 {
-    public Transform player;
+    public GameObject Barrier;
 
     public UnityEngine.UI.Image Offense;
     public UnityEngine.UI.Image Defense;
     public UnityEngine.UI.Image Utility;
 
-    public static float OffenseCD = 15f;
-    public static float DefenseCD = 15f;
-    public static float UtilityCD = 15f;
+    public static bool UtilityLocked = true;
+    public static bool DefenseLocked = false;
+    public static bool OffenseLocked = true;
+
+    public static float OffenseCD = 5f;
+    public static float DefenseCD = 10f;
+    public static float UtilityCD = 30f;
 
     bool OffenseOnCooldown = false;
     bool DefenseOnCooldown = false;
@@ -29,6 +33,20 @@ public class Toolbar : MonoBehaviour
 
     // Start color for Utility Image
     Color utilityColor;
+    Color defenseColor;
+    Color offenseColor;
+
+    public Sprite utilOn;
+    public Sprite utilOff;
+    public Sprite defOn;
+    public Sprite defOff;
+    public Sprite offOn;
+    public Sprite offOff;
+
+    public Sprite lockOn;
+    public Sprite lockOff;
+
+    public PlayerMovement destroyer;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +57,12 @@ public class Toolbar : MonoBehaviour
         utilityTransform = Utility.rectTransform;
 
         utilityColor = Utility.color;
+        defenseColor = Defense.color;
+        offenseColor = Offense.color;
+
+        Utility.color = Color.white;
+        Defense.color = Color.white;
+        Offense.color = Color.white;
     }
 
     // Update is called once per frame
@@ -47,35 +71,59 @@ public class Toolbar : MonoBehaviour
 
         if (lastItem != handItem) {
             if (lastItem == 0) {
-                offenseTransform.anchoredPosition = new Vector2(offenseTransform.anchoredPosition.x, offenseTransform.anchoredPosition.y - 50f);
-                Vector3 newScale = new Vector3(0.7f, 0.7f, 0.7f);
+                offenseTransform.anchoredPosition = new Vector2(offenseTransform.anchoredPosition.x, offenseTransform.anchoredPosition.y - 20f);
+                Vector3 newScale = new Vector3(1f, 1f, 1f);
                 offenseTransform.localScale = newScale;
+                if (OffenseLocked) { Offense.sprite = lockOff; } else
+                {
+                Offense.sprite = offOff;
+                }
             }
             else if (lastItem == 1) {
-                defenseTransform.anchoredPosition = new Vector2(defenseTransform.anchoredPosition.x, defenseTransform.anchoredPosition.y - 50f);
-                Vector3 newScale = new Vector3(0.7f, 0.7f, 0.7f);
+                defenseTransform.anchoredPosition = new Vector2(defenseTransform.anchoredPosition.x, defenseTransform.anchoredPosition.y - 20f);
+                Vector3 newScale = new Vector3(1f, 1f, 1f);
                 defenseTransform.localScale = newScale;
+                if (DefenseLocked) { Defense.sprite = lockOff; } else
+                {
+                Defense.sprite = defOff;
+                }
             }
             else if (lastItem == 2) {
-                utilityTransform.anchoredPosition = new Vector2(utilityTransform.anchoredPosition.x, utilityTransform.anchoredPosition.y - 50f);
-                Vector3 newScale = new Vector3(0.7f, 0.7f, 0.7f);
+                utilityTransform.anchoredPosition = new Vector2(utilityTransform.anchoredPosition.x, utilityTransform.anchoredPosition.y - 20f);
+                Vector3 newScale = new Vector3(1f, 1f, 1f);
                 utilityTransform.localScale = newScale;
+                if (UtilityLocked) { Utility.sprite = lockOff; } else
+                {
+                Utility.sprite = utilOff;
+                }
             }
             lastItem = handItem;
             if (handItem == 0) {
-                offenseTransform.anchoredPosition = new Vector2(offenseTransform.anchoredPosition.x, offenseTransform.anchoredPosition.y + 50f);
-                Vector3 newScale = new Vector3(1f, 1f, 1f);
+                offenseTransform.anchoredPosition = new Vector2(offenseTransform.anchoredPosition.x, offenseTransform.anchoredPosition.y + 20f);
+                Vector3 newScale = new Vector3(1.2f, 1.2f, 1.2f);
                 offenseTransform.localScale = newScale;
+                if (OffenseLocked) { Offense.sprite = lockOn; } else
+                {
+                Offense.sprite = offOn;
+                }
             }
             else if (handItem == 1) {
-                defenseTransform.anchoredPosition = new Vector2(defenseTransform.anchoredPosition.x, defenseTransform.anchoredPosition.y + 50f);
-                Vector3 newScale = new Vector3(1f, 1f, 1f);
+                defenseTransform.anchoredPosition = new Vector2(defenseTransform.anchoredPosition.x, defenseTransform.anchoredPosition.y + 20f);
+                Vector3 newScale = new Vector3(1.2f, 1.2f, 1.2f);
                 defenseTransform.localScale = newScale;
+                if (DefenseLocked) { Defense.sprite = lockOn; } else
+                {
+                Defense.sprite = defOn;
+                }
             }
             else if (handItem == 2) {
-                utilityTransform.anchoredPosition = new Vector2(utilityTransform.anchoredPosition.x, utilityTransform.anchoredPosition.y + 50f);
-                Vector3 newScale = new Vector3(1f, 1f, 1f);
+                utilityTransform.anchoredPosition = new Vector2(utilityTransform.anchoredPosition.x, utilityTransform.anchoredPosition.y + 20f);
+                Vector3 newScale = new Vector3(1.2f, 1.2f, 1.2f);
                 utilityTransform.localScale = newScale;
+                if (UtilityLocked) { Utility.sprite = lockOn; } else
+                {
+                Utility.sprite = utilOn;
+                }
             }
         }
 
@@ -93,18 +141,69 @@ public class Toolbar : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0))
         {
+            if (handItem == 2 && !UtilityLocked)
+            {
             ActivateUtilAbility();
+            }
+            else if (handItem == 1 && !DefenseLocked)
+            {
+            ActivateDefAbility();
+            }
+            else if (handItem == 0 && !OffenseLocked)
+            {
+            ActivateOffAbility();
+            }
         }
     }
 
 
+// DEFENSE
+
+    public void ActivateDefAbility()
+    {
+        // Check if the ability is not on cooldown
+        if (!DefenseOnCooldown)
+        {
+            // Change the scale of the GameObject
+            Defense.color = defenseColor;
+
+            // Start the cooldown
+            StartCoroutine(StartDefCooldown(DefenseCD));
+        }
+        else
+        {
+            // Ability is on cooldown
+            Debug.Log("Ability is on cooldown!");
+        }
+    }
+
+    
+    private IEnumerator StartDefCooldown(float cooldownDuration)
+    {
+        DefenseOnCooldown = true;
+        Barrier.SetActive(true);
+
+        // Wait for the cooldown duration
+        yield return new WaitForSeconds(5f);
+
+        // Reset the cooldown
+        Barrier.SetActive(false);
+
+        yield return new WaitForSeconds(5f);
+
+        Defense.color = Color.white;
+        DefenseOnCooldown = false;
+    }
+
+
+// UTIL
     public void ActivateUtilAbility()
     {
         // Check if the ability is not on cooldown
         if (!UtilityOnCooldown)
         {
             // Change the scale of the GameObject
-            StartCoroutine(ChangeScaleAndColorForDuration(Vector3.one * 0.5f, utilityColor, Color.white, 15f));
+            Utility.color = utilityColor;
 
             // Start the cooldown
             StartCoroutine(StartUtilCooldown(UtilityCD));
@@ -116,71 +215,58 @@ public class Toolbar : MonoBehaviour
         }
     }
 
-    // Coroutine to change the scale and color for a duration
-    private IEnumerator ChangeScaleAndColorForDuration(Vector3 targetScale, Color startColor, Color endColor, float duration)
-    {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
-        {
-            // Interpolate the scale and color over time
-            float t = elapsedTime / duration;
-            player.transform.localScale = targetScale;
-            Utility.color = Color.Lerp(startColor, endColor, t);
-
-            // Wait for the next frame
-            yield return null;
-
-            // Update elapsed time
-            elapsedTime += Time.deltaTime;
-        }
-
-        // Return the scale and color to normal after the duration
-        player.transform.localScale = Vector3.one;
-        Utility.color = startColor;
-    }
-
     // Coroutine to start the cooldown
     private IEnumerator StartUtilCooldown(float cooldownDuration)
     {
         UtilityOnCooldown = true;
+        PlayerMovement.playerSize = 2;
 
-        // Wait for a brief moment before starting the color change
-        yield return new WaitForSeconds(0.1f);
+        // Wait for the cooldown duration
+        yield return new WaitForSeconds(cooldownDuration - 15f);
 
-        // Start the color change during cooldown
-        StartCoroutine(ChangeColorDuringCooldown());
+        // Reset the cooldown
+        PlayerMovement.playerSize = 1;
+
+        yield return new WaitForSeconds(15f);
+
+        UtilityOnCooldown = false;
+        Utility.color = Color.white;
+    }
+
+// UTIL
+    public void ActivateOffAbility()
+    {
+        // Check if the ability is not on cooldown
+        if (!OffenseOnCooldown)
+        {
+            // Change the scale of the GameObject
+            Offense.color = offenseColor;
+
+            // Start the cooldown
+            StartCoroutine(StartOffCooldown(OffenseCD));
+        }
+        else
+        {
+            // Ability is on cooldown
+            Debug.Log("Ability is on cooldown!");
+        }
+    }
+
+    // Coroutine to start the cooldown
+    private IEnumerator StartOffCooldown(float cooldownDuration)
+    {
+        OffenseOnCooldown = true;
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition).normalized;
+        mousePosition.z = 0f;
+        destroyer.DestroyObjectsInConeArea(Barrier.transform.position, mousePosition);
 
         // Wait for the cooldown duration
         yield return new WaitForSeconds(cooldownDuration);
 
-        // Reset the cooldown
-        UtilityOnCooldown = false;
+        OffenseOnCooldown = false;
+        Offense.color = Color.white;
     }
 
     // Coroutine to gradually change the color during cooldown
-    private IEnumerator ChangeColorDuringCooldown()
-    {
-        float elapsedTime = 0f;
-
-        // Darker color for the cooldown effect
-        Color darkerColor = utilityColor * 0.7f;
-
-        while (elapsedTime < UtilityCD)
-        {
-            // Interpolate the color over time
-            float t = elapsedTime / UtilityCD;
-            Utility.color = Color.Lerp(darkerColor, utilityColor, t);
-
-            // Wait for the next frame
-            yield return null;
-
-            // Update elapsed time
-            elapsedTime += Time.deltaTime;
-        }
-
-        // Ensure the color is set to the start color at the end
-        Utility.color = utilityColor;
-    }
 
 }

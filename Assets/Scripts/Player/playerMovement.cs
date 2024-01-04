@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static bool Alive = true;
     public float baseSpeed = 5.0f;
     public Tilemap groundTilemap;
 
@@ -20,9 +22,21 @@ public class PlayerMovement : MonoBehaviour
     public Sprite downChar;
     public Sprite rightChar;
     public Sprite leftChar;
+    public Sprite upCharS;
+    public Sprite downCharS;
+    public Sprite rightCharS;
+    public Sprite leftCharS;
+
+    public static int playerSize;
+
+    
+    public float destroyRadius = 5f;
+    public float coneAngle = 30f;
+    public LayerMask targetLayer;
 
     private void Start()
     {
+        playerSize = 1;
         body = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<BoxCollider2D>();
@@ -30,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        m_Animation.SetInteger("playerSize", playerSize);
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(horizontalInput, verticalInput).normalized;
@@ -90,24 +105,36 @@ public class PlayerMovement : MonoBehaviour
         if (movement.y > 0)
         {
             m_Animation.SetInteger("walkingState", 3);
+            if (playerSize == 1)
+            {
             spriteRenderer.sprite = upChar;
+            } else { spriteRenderer.sprite = upCharS; }
         }
         else if (movement.y < 0)
         {
             m_Animation.SetInteger("walkingState", 1);
+            if (playerSize == 1)
+            {
             spriteRenderer.sprite = downChar;
+            } else { spriteRenderer.sprite = downCharS; }
         }
         else
         {
             if (movement.x < 0)
             {
                 m_Animation.SetInteger("walkingState", 2);
+            if (playerSize == 1)
+            {
                 spriteRenderer.sprite = leftChar;
+            } else { spriteRenderer.sprite = leftCharS; }
             }
             else if (movement.x > 0)
             {
                 m_Animation.SetInteger("walkingState", 4);
+            if (playerSize == 1)
+            {
                 spriteRenderer.sprite = rightChar;
+            } else { spriteRenderer.sprite = rightCharS; }
             }
             else
             {
@@ -150,4 +177,48 @@ public class PlayerMovement : MonoBehaviour
             return downChar;
     }
 }
+
+
+private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Book"))
+        {
+            Toolbar.OffenseLocked = false;
+            SceneManager.LoadScene(3);
+        }
+    }
+
+public void DestroyObjectsInConeArea(Vector3 origin, Vector3 coneDirection)
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(origin, destroyRadius, targetLayer);
+
+        foreach (Collider2D hitCollider in hitColliders)
+        {
+            Vector3 directionToCollider = (hitCollider.transform.position - origin).normalized;
+            float angleToCollider = Vector3.Angle(transform.up, directionToCollider);
+
+            if (angleToCollider <= coneAngle / 2f)
+            {
+                // Destroy the GameObject within the cone and specified layer
+                Destroy(hitCollider.gameObject);
+            }
+        }
+    }   
+private void OnDrawGizmos()
+    {
+            // Draw cone visualization in the scene view
+            Vector3 forward = Camera.main.ScreenToWorldPoint(Input.mousePosition).normalized;
+            Vector3 coneDirection1 = Quaternion.AngleAxis(-coneAngle / 2f, Vector3.forward) * forward;
+            Vector3 coneDirection2 = Quaternion.AngleAxis(coneAngle / 2f, Vector3.forward) * forward;
+
+            Gizmos.color = Color.red;
+
+            Gizmos.DrawRay(transform.position, coneDirection1 * destroyRadius);
+            Gizmos.DrawRay(transform.position, coneDirection2 * destroyRadius);
+
+            Gizmos.DrawLine(transform.position + coneDirection1 * destroyRadius, transform.position + coneDirection2 * destroyRadius);
+            Gizmos.DrawLine(transform.position - coneDirection1 * destroyRadius, transform.position - coneDirection2 * destroyRadius);
+    }
+
 }
+

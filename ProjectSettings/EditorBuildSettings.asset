@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/(1) Prelogue.unity
     guid: ea3d0fca7bf85bb40b8bfafc241e68c2
   - enabled: 1
+    path: Assets/Scenes/(2) First Room.unity
+    guid: 556e4bcd90ca2864282bdf0a545a7636
+  - enabled: 1
+    path: Assets/Scenes/(3) Second Room.unity
+    guid: b6271047e521b2d499278383c889caf9
+  - enabled: 1
     path: Assets/Scenes/(-99) Debug.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
