@@ -52,6 +52,7 @@ public class Toolbar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         handItem = 0;
         offenseTransform = Offense.rectTransform;
         defenseTransform = Defense.rectTransform;
