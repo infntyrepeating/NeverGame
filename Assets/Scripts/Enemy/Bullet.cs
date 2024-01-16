@@ -48,7 +48,8 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
             // Set the boolean variable to true
-            PlayerMovement.Alive = false;
+            PlayerMovement.life--;
+            if (PlayerMovement.life == 0) { PlayerMovement.Alive = false; }
 
             // You can add more actions or logic here if needed
             Debug.Log("Entered Trigger Zone!");

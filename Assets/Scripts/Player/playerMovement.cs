@@ -7,6 +7,8 @@ using UnityEditor;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static int life = 3;
+    
     public static bool Alive = true;
     public float baseSpeed = 5.0f;
     public Tilemap groundTilemap;
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!PlayerMovement.Alive) { SceneManager.LoadScene(5); }
         m_Animation.SetInteger("playerSize", playerSize);
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
