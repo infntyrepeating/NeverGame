@@ -52,32 +52,54 @@ public class SmileEnemy : MonoBehaviour
 
     private void UpdateAnimationAndSprite(Vector2 movement)
     {
-        if (movement.y > 0)
+        if (movement.x > 0 && movement.y > 0)
         {
-            m_Animation.SetInteger("walkingState", 3);
-            spriteRenderer.sprite = upChar;
-        }
-        else if (movement.y < 0)
-        {
-            m_Animation.SetInteger("walkingState", 1);
-            spriteRenderer.sprite = downChar;
-        }
-        else
-        {
-            if (movement.x < 0)
-            {
-                m_Animation.SetInteger("walkingState", 2);
-                spriteRenderer.sprite = leftChar;
-            }
-            else if (movement.x > 0)
+            if (movement.x > movement.y)
             {
                 m_Animation.SetInteger("walkingState", 4);
                 spriteRenderer.sprite = rightChar;
             }
             else
             {
-                m_Animation.SetInteger("walkingState", 0);
-                // Do not change the sprite when there's no movement
+                m_Animation.SetInteger("walkingState", 3);
+                spriteRenderer.sprite = upChar;
+            }
+        } else if (movement.x < 0 && movement.y < 0)
+        {
+            if (movement.x < movement.y)
+            {
+                m_Animation.SetInteger("walkingState", 2);
+                spriteRenderer.sprite = leftChar;
+            }
+            else
+            {
+                m_Animation.SetInteger("walkingState", 1);
+                spriteRenderer.sprite = downChar;
+            }
+        } else if (movement.x < 0 && movement.y > 0)
+        {
+            if ((-1) * movement.x > movement.y)
+            {
+                m_Animation.SetInteger("walkingState", 2);
+                spriteRenderer.sprite = leftChar;
+            }
+            else
+            {
+                m_Animation.SetInteger("walkingState", 3);
+                spriteRenderer.sprite = upChar;
+            }
+        } else if (movement.x > 0 && movement.y < 0)
+        {
+            if (movement.x > (-1) * movement.y)
+            {
+                m_Animation.SetInteger("walkingState", 1);
+                spriteRenderer.sprite = downChar;
+            }
+            else
+            {
+                m_Animation.SetInteger("walkingState", 4);
+                spriteRenderer.sprite = rightChar;
+                
             }
         }
     }

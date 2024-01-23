@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
 
     public static int playerSize;
 
+    private float oldHInput = 0;
+    private float oldVInput = 0;
+
     
     public float destroyRadius = 5f;
     public float coneAngle = 30f;
@@ -108,43 +111,64 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimationAndSprite(Vector2 movement)
     {
-        if (movement.y > 0)
+        if (oldHInput != movement.x)
         {
-            m_Animation.SetInteger("walkingState", 3);
-            if (playerSize == 1)
+            oldHInput = movement.x;
+            if (movement.x != 0 )
             {
-            spriteRenderer.sprite = upChar;
-            } else { spriteRenderer.sprite = upCharS; }
-        }
-        else if (movement.y < 0)
-        {
-            m_Animation.SetInteger("walkingState", 1);
-            if (playerSize == 1)
-            {
-            spriteRenderer.sprite = downChar;
-            } else { spriteRenderer.sprite = downCharS; }
-        }
-        else
-        {
-            if (movement.x < 0)
-            {
-                m_Animation.SetInteger("walkingState", 2);
-            if (playerSize == 1)
-            {
-                spriteRenderer.sprite = leftChar;
-            } else { spriteRenderer.sprite = leftCharS; }
+                if (movement.x < 0)
+                {
+                    m_Animation.SetInteger("walkingState", 2);
+                    if (playerSize == 1)
+                    {
+                        spriteRenderer.sprite = leftChar;
+                    }
+                    else
+                    {
+                        spriteRenderer.sprite = leftCharS; 
+                    }
+                }
+                else
+                {
+                    m_Animation.SetInteger("walkingState", 4);
+                    if (playerSize == 1)
+                    {
+                        spriteRenderer.sprite = rightChar;
+                    } else { spriteRenderer.sprite = rightCharS; }
+                }
             }
-            else if (movement.x > 0)
+        } else if (oldVInput != movement.y)
+        {
+            oldVInput = movement.y;
+            if (movement.y != 0)
             {
-                m_Animation.SetInteger("walkingState", 4);
-            if (playerSize == 1)
-            {
-                spriteRenderer.sprite = rightChar;
-            } else { spriteRenderer.sprite = rightCharS; }
+                if (movement.y < 0)
+                {
+                    m_Animation.SetInteger("walkingState", 1);
+                    if (playerSize == 1)
+                    {
+                        spriteRenderer.sprite = downChar;
+                    }
+                    else
+                    {
+                        spriteRenderer.sprite = downCharS;
+                    }
+                }
+                else
+                {
+                    m_Animation.SetInteger("walkingState", 3);
+                    if (playerSize == 1)
+                    {
+                        spriteRenderer.sprite = upChar;
+                    } else { spriteRenderer.sprite = upCharS; }
+                }
             }
-            else
+        } if (movement.x == 0 && movement.y == 0)
+        {
             {
                 m_Animation.SetInteger("walkingState", 0);
+                oldVInput = 0;
+                oldHInput = 0;
                 // Do not change the sprite when there's no movement
             }
         }
@@ -163,25 +187,27 @@ public class PlayerMovement : MonoBehaviour
     {
         if (lastMovementDirection.y > 0)
         {
-            return upChar;
+            if (playerSize == 1) { return upChar; }
+            else { return upCharS; }
         }
         else if (lastMovementDirection.y < 0)
         {
-            return downChar;
+            if (playerSize == 1) { return downChar; }
+            else { return downCharS; }
         }
         else if (lastMovementDirection.x < 0)
         {
-            return leftChar;
+            if (playerSize == 1) { return leftChar; }
+            else { return leftCharS; }
         }
         else if (lastMovementDirection.x > 0)
         {
-            return rightChar;
-        }
-        else
+            if (playerSize == 1) { return rightChar; }
+            else { return rightCharS; }
+        } else
         {
-            // Default sprite when no movement
-            return downChar;
-    }
+            return spriteRenderer.sprite;
+        }
 }
 
 
@@ -189,8 +215,18 @@ private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Book"))
         {
-            Toolbar.OffenseLocked = false;
-            SceneManager.LoadScene(3);
+            if ((SceneManager.GetActiveScene().buildIndex) == 2)
+            {
+                Toolbar.OffenseLocked = false;
+                SceneManager.LoadScene(3);
+            } else if ((SceneManager.GetActiveScene().buildIndex) == 3)
+            {
+                Toolbar.UtilityLocked = false;
+                SceneManager.LoadScene(4);
+            } else if ((SceneManager.GetActiveScene().buildIndex) == 4)
+            {
+                SceneManager.LoadScene(5);
+            }
         }
     }
 
