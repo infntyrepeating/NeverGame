@@ -9,16 +9,27 @@ public class EyeEnemy : MonoBehaviour
     public float spawnRadius = 7f;
     public float spawnInterval = 3f;
     public float moveSpeed = 5f;
+    
+    private AudioSource audioSource;
+    public AudioClip sound;
 
     void Start()
     {
         InvokeRepeating("SpawnPrefab", 0f, spawnInterval);
+        
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void SpawnPrefab()
     {
         if (IsInRadius())
         {
+            audioSource.PlayOneShot(sound, 0.05f);
+            
             // Calculate the direction from this object to the target object
             Vector3 direction = (targetObject.transform.position - transform.position).normalized;
 

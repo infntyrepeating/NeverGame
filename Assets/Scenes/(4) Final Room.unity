@@ -4398,6 +4398,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4602588539441568398, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 1278277496}
+    - target: {fileID: 4602588539441568398, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
       propertyPath: baseSpeed
       value: 2
       objectReference: {fileID: 0}
@@ -4766,7 +4770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1278277497
 RectTransform:
   m_ObjectHideFlags: 0

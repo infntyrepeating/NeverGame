@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject attackPrefab;
 
+    public GameObject Timer;
+
     private void Start()
     {
         playerSize = 1;
@@ -225,11 +227,12 @@ private void OnTriggerEnter2D(Collider2D other)
                 SceneManager.LoadScene(4);
             } else if ((SceneManager.GetActiveScene().buildIndex) == 4)
             {
-                SceneManager.LoadScene(5);
+                SceneManager.LoadScene(6);
             }
         } else if (other.CompareTag("Boss"))
         {
             BossSpawners.boss = true;
+            Timer.SetActive(true);
         }
     }
 

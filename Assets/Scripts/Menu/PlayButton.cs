@@ -15,12 +15,21 @@ public class PlayButton : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     private bool isHovered = false;
+    
+    private AudioSource audioSource;
+    public AudioClip click;
 
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
+        
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
@@ -52,6 +61,7 @@ public class PlayButton : MonoBehaviour
         // Start the specified animation on mouse click
         if (m_Animation != null)
         {
+            audioSource.PlayOneShot(click, 0.3f);
             m2_Animation.SetTrigger("FadeIn");
             // Turn the screen white while the animation plays
             StartCoroutine(PlayAnimationAndWait());
