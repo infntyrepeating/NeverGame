@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
@@ -11,8 +12,9 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-
-        target = GameObject.Find("Player");
+        if ((SceneManager.GetActiveScene().buildIndex) == 2)
+        {
+            target = GameObject.Find("Player");
             // Calculate the direction from this object to the target object
             direction = (target.transform.position - transform.position).normalized;
 
@@ -29,6 +31,13 @@ public class Bullet : MonoBehaviour
             {
                 Debug.LogError("Rigidbody component is missing!");
             }
+        }
+        else
+        {
+            direction = Vector2.left;
+            rb = GetComponent<Rigidbody2D>();
+            rb.velocity = direction * moveSpeed;
+        }
     }
 
     void Update()

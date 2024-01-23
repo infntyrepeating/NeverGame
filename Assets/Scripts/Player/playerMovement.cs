@@ -227,6 +227,9 @@ private void OnTriggerEnter2D(Collider2D other)
             {
                 SceneManager.LoadScene(5);
             }
+        } else if (other.CompareTag("Boss"))
+        {
+            BossSpawners.boss = true;
         }
     }
 
