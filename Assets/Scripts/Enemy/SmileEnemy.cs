@@ -17,6 +17,11 @@ public class SmileEnemy : MonoBehaviour
     public Animator m_Animation;
     private bool can_walk = true;
 
+    public GameObject barrier;
+    
+    private AudioSource audioSource;
+    public AudioClip sound;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,6 +29,12 @@ public class SmileEnemy : MonoBehaviour
         if (target == null)
         {
             Debug.LogError("Target not assigned to the script!");
+        }
+        
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
 
@@ -148,17 +159,19 @@ public class SmileEnemy : MonoBehaviour
         {
             Destroy(gameObject);
         }// Check if the entering collider is the one you are interested in
-        else if (other.CompareTag("Player")) // Change "Player" to the tag of the object you want to trigger
+        else if (other.CompareTag("Player") || other.CompareTag("Barrier")) // Change "Player" to the tag of the object you want to trigger
         {
             // Set the boolean variable to true
-            LifeCounter.Lose();
+            if (!barrier.activeInHierarchy)
+            {
+                LifeCounter.Lose();
+            }
+            audioSource.PlayOneShot(sound, 0.2f);
             if (PlayerMovement.life == 0) { PlayerMovement.Alive = false; }
             Vector2 direction = (target.position - transform.position).normalized;
             rb.velocity = -direction * 3;
 
             StartCoroutine(Wait(1.5f));
-
-
 
         }
     }

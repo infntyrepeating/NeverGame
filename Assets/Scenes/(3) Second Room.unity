@@ -236,6 +236,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 101765915}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &101765915
 Animator:
   serializedVersion: 5
@@ -21343,6 +21345,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 395592614}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &395592614
 Animator:
   serializedVersion: 5
@@ -21616,6 +21620,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 513338950}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &513338950
 Animator:
   serializedVersion: 5
@@ -21758,7 +21764,7 @@ MonoBehaviour:
   Life1: {fileID: 1744582331}
   Life2: {fileID: 342650681}
   Life3: {fileID: 2004122783}
-  timer_cooldown: 3
+  sound: {fileID: 0}
 --- !u!1 &762099975
 GameObject:
   m_ObjectHideFlags: 0
@@ -21903,6 +21909,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 819057368}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &819057368
 Animator:
   serializedVersion: 5
@@ -22104,6 +22112,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 944940939}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &944940939
 Animator:
   serializedVersion: 5
@@ -22305,6 +22315,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 945443828}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &945443828
 Animator:
   serializedVersion: 5
@@ -22685,6 +22697,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 983979198}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &983979198
 Animator:
   serializedVersion: 5
@@ -22886,6 +22900,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 1078031013}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &1078031013
 Animator:
   serializedVersion: 5
@@ -23070,6 +23086,7 @@ GameObject:
   - component: {fileID: 1358667947}
   - component: {fileID: 1358667946}
   - component: {fileID: 1358667949}
+  - component: {fileID: 1358667950}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -23166,6 +23183,102 @@ MonoBehaviour:
   target: {fileID: 1971515135}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0}
+--- !u!82 &1358667950
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358667945}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f4d40f34b5f61ab4b86ced14696db4bc, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.227
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1434932042
 GameObject:
   m_ObjectHideFlags: 0
@@ -23279,6 +23392,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 1434932046}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &1434932046
 Animator:
   serializedVersion: 5
@@ -23449,13 +23564,112 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5221178521413921031, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 762099976}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8128431010681327002, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1494088441}
   m_SourcePrefab: {fileID: 100100000, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
 --- !u!1 &1494088440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8128431010681327002, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
   m_PrefabInstance: {fileID: 1494088439}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1494088441
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494088440}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1c8cf58456c8b8c44b41b37a67fd92a9, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!224 &1505952229 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8725959817451884036, guid: 715715a3691a2ba4fb50101daf1a4725, type: 3}
@@ -23574,6 +23788,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 1604568941}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &1604568941
 Animator:
   serializedVersion: 5
@@ -23948,6 +24164,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 1880719975}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &1880719975
 Animator:
   serializedVersion: 5
@@ -24240,6 +24458,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 2031278983}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &2031278983
 Animator:
   serializedVersion: 5
@@ -24441,6 +24661,8 @@ MonoBehaviour:
   rightChar: {fileID: -2078782333, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   leftChar: {fileID: -749499369, guid: f09f2f296c3920e43976311a234fedbf, type: 3}
   m_Animation: {fileID: 2039199599}
+  barrier: {fileID: 1494088440}
+  sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
 --- !u!95 &2039199599
 Animator:
   serializedVersion: 5
