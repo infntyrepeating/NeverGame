@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 101765914}
   - component: {fileID: 101765913}
   - component: {fileID: 101765912}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21241,7 +21241,7 @@ GameObject:
   - component: {fileID: 395592613}
   - component: {fileID: 395592618}
   - component: {fileID: 395592617}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21442,7 +21442,7 @@ GameObject:
   - component: {fileID: 513338949}
   - component: {fileID: 513338948}
   - component: {fileID: 513338947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21674,7 +21674,7 @@ GameObject:
   - component: {fileID: 819057367}
   - component: {fileID: 819057366}
   - component: {fileID: 819057365}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21875,7 +21875,7 @@ GameObject:
   - component: {fileID: 944940938}
   - component: {fileID: 944940937}
   - component: {fileID: 944940936}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22076,7 +22076,7 @@ GameObject:
   - component: {fileID: 945443827}
   - component: {fileID: 945443826}
   - component: {fileID: 945443825}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22456,7 +22456,7 @@ GameObject:
   - component: {fileID: 983979197}
   - component: {fileID: 983979196}
   - component: {fileID: 983979195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22657,7 +22657,7 @@ GameObject:
   - component: {fileID: 1078031012}
   - component: {fileID: 1078031011}
   - component: {fileID: 1078031010}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23050,7 +23050,7 @@ GameObject:
   - component: {fileID: 1434932045}
   - component: {fileID: 1434932044}
   - component: {fileID: 1434932043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23293,6 +23293,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7977209880813068266, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 8128431010681327002, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -23336,7 +23340,7 @@ GameObject:
   - component: {fileID: 1604568940}
   - component: {fileID: 1604568939}
   - component: {fileID: 1604568938}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23635,7 +23639,7 @@ GameObject:
   - component: {fileID: 1880719974}
   - component: {fileID: 1880719973}
   - component: {fileID: 1880719972}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23852,7 +23856,7 @@ GameObject:
   - component: {fileID: 2031278982}
   - component: {fileID: 2031278981}
   - component: {fileID: 2031278980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24053,7 +24057,7 @@ GameObject:
   - component: {fileID: 2039199598}
   - component: {fileID: 2039199597}
   - component: {fileID: 2039199596}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmileEnemy (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24410,6 +24414,10 @@ PrefabInstance:
     - target: {fileID: 294028108857010487, guid: f870e1a826e199247a4bb5e1e0a10efc, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099219395240809213, guid: f870e1a826e199247a4bb5e1e0a10efc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8282085245796548685, guid: f870e1a826e199247a4bb5e1e0a10efc, type: 3}
       propertyPath: m_LocalPosition.x

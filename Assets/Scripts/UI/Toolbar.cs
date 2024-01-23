@@ -16,7 +16,7 @@ public class Toolbar : MonoBehaviour
 
     public static bool UtilityLocked = true;
     public static bool DefenseLocked = false;
-    public static bool OffenseLocked = false;
+    public static bool OffenseLocked = true;
 
     public static float OffenseCD = 5f;
     public static float DefenseCD = 10f;

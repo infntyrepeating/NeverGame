@@ -15,6 +15,7 @@ public class SmileEnemy : MonoBehaviour
     public Sprite leftChar;
     private Vector2 lastMovementDirection;
     public Animator m_Animation;
+    private bool can_walk = true;
 
     void Start()
     {
@@ -35,7 +36,10 @@ public class SmileEnemy : MonoBehaviour
         {
             // Move towards the target using Rigidbody2D velocity
             Vector2 direction = (target.position - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
+            if (can_walk)
+            {
+                rb.velocity = direction * moveSpeed;
+            }
         }
         else
         {
@@ -136,6 +140,34 @@ public class SmileEnemy : MonoBehaviour
             // Default sprite when no movement
             return downChar;
         }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Attack"))
+        {
+            Destroy(gameObject);
+        }// Check if the entering collider is the one you are interested in
+        else if (other.CompareTag("Player")) // Change "Player" to the tag of the object you want to trigger
+        {
+            // Set the boolean variable to true
+            LifeCounter.Lose();
+            if (PlayerMovement.life == 0) { PlayerMovement.Alive = false; }
+            Vector2 direction = (target.position - transform.position).normalized;
+            rb.velocity = -direction * 3;
+
+            StartCoroutine(Wait(1.5f));
+
+
+
+        }
+    }
+    
+    public IEnumerator Wait(float delayInSecs)
+    {
+        can_walk = false;
+        yield return new WaitForSeconds(delayInSecs);
+        can_walk = true;
     }
 
 }

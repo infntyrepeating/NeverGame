@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Barrier
   - Book
+  - Attack
   layers:
   - Default
   - TransparentFX

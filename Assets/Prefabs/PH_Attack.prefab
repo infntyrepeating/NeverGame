@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2986738840603160392}
   m_Layer: 0
   m_Name: PH_Attack
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e8ab7d534f8e746a5539ed0d0315a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  excludedLayerName: Player
+  excludedTag: Player
   playerTag: Player
   destroyDistance: 2
   maxScale: 3
