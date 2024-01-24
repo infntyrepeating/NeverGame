@@ -578,6 +578,7 @@ MonoBehaviour:
   lockOn: {fileID: 21300000, guid: a72854df205f5b14f9b4bdf489dca33a, type: 3}
   lockOff: {fileID: 21300000, guid: 7a06289b7ed88b84f9a58aa154559134, type: 3}
   destroyer: {fileID: 0}
+  walls: {fileID: 0}
 --- !u!114 &579189383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +930,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1c8cf58456c8b8c44b41b37a67fd92a9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.222
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4555,6 +4556,7 @@ MonoBehaviour:
     m_Bits: 64
   attackPrefab: {fileID: 0}
   Timer: {fileID: 0}
+  colliderToIgnore: {fileID: 1175077509}
 --- !u!61 &1539651876
 BoxCollider2D:
   m_ObjectHideFlags: 0

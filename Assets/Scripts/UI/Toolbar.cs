@@ -15,7 +15,7 @@ public class Toolbar : MonoBehaviour
     public UnityEngine.UI.Image Utility;
 
     public static bool UtilityLocked = true;
-    public static bool DefenseLocked = false;
+    public static bool DefenseLocked = false; //
     public static bool OffenseLocked = true;
 
     public static float OffenseCD = 5f;
@@ -48,10 +48,20 @@ public class Toolbar : MonoBehaviour
     public Sprite lockOff;
 
     public PlayerMovement destroyer;
-
+    
+    public GameObject walls;
+    
+    private AudioSource audioSource;
+    public AudioClip sound;
+    
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         handItem = 0;
         offenseTransform = Offense.rectTransform;
@@ -222,12 +232,14 @@ public class Toolbar : MonoBehaviour
     {
         UtilityOnCooldown = true;
         PlayerMovement.playerSize = 2;
+        walls.SetActive(false);
 
         // Wait for the cooldown duration
         yield return new WaitForSeconds(cooldownDuration - 15f);
 
         // Reset the cooldown
         PlayerMovement.playerSize = 1;
+        walls.SetActive(true);
 
         yield return new WaitForSeconds(15f);
 
@@ -241,6 +253,7 @@ public class Toolbar : MonoBehaviour
         // Check if the ability is not on cooldown
         if (!OffenseOnCooldown)
         {
+            audioSource.PlayOneShot(sound, 0.02f);
             // Change the scale of the GameObject
             Offense.color = offenseColor;
 

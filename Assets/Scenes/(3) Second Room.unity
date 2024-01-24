@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Animation: {fileID: 101765915}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &101765915
 Animator:
   serializedVersion: 5
@@ -21347,6 +21348,7 @@ MonoBehaviour:
   m_Animation: {fileID: 395592614}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &395592614
 Animator:
   serializedVersion: 5
@@ -21622,6 +21624,7 @@ MonoBehaviour:
   m_Animation: {fileID: 513338950}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &513338950
 Animator:
   serializedVersion: 5
@@ -21911,6 +21914,7 @@ MonoBehaviour:
   m_Animation: {fileID: 819057368}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &819057368
 Animator:
   serializedVersion: 5
@@ -22114,6 +22118,7 @@ MonoBehaviour:
   m_Animation: {fileID: 944940939}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &944940939
 Animator:
   serializedVersion: 5
@@ -22317,6 +22322,7 @@ MonoBehaviour:
   m_Animation: {fileID: 945443828}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &945443828
 Animator:
   serializedVersion: 5
@@ -22699,6 +22705,7 @@ MonoBehaviour:
   m_Animation: {fileID: 983979198}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &983979198
 Animator:
   serializedVersion: 5
@@ -22902,6 +22909,7 @@ MonoBehaviour:
   m_Animation: {fileID: 1078031013}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &1078031013
 Animator:
   serializedVersion: 5
@@ -23394,6 +23402,7 @@ MonoBehaviour:
   m_Animation: {fileID: 1434932046}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &1434932046
 Animator:
   serializedVersion: 5
@@ -23498,6 +23507,10 @@ PrefabInstance:
       propertyPath: groundTilemap
       value: 
       objectReference: {fileID: 142555155}
+    - target: {fileID: 4602588539441568398, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
+      propertyPath: colliderToIgnore
+      value: 
+      objectReference: {fileID: 210248379}
     - target: {fileID: 5221178521413921031, guid: 0d573d825d53b174ab867b4f0a0d91ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -23586,7 +23599,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1c8cf58456c8b8c44b41b37a67fd92a9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.222
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -23790,6 +23803,7 @@ MonoBehaviour:
   m_Animation: {fileID: 1604568941}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &1604568941
 Animator:
   serializedVersion: 5
@@ -24166,6 +24180,7 @@ MonoBehaviour:
   m_Animation: {fileID: 1880719975}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &1880719975
 Animator:
   serializedVersion: 5
@@ -24460,6 +24475,7 @@ MonoBehaviour:
   m_Animation: {fileID: 2031278983}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &2031278983
 Animator:
   serializedVersion: 5
@@ -24663,6 +24679,7 @@ MonoBehaviour:
   m_Animation: {fileID: 2039199599}
   barrier: {fileID: 1494088440}
   sound: {fileID: 8300000, guid: a73f84232bc11b440b16ecd850318e32, type: 3}
+  sound2: {fileID: 8300000, guid: d1367c3b26f3edd40b1ccbcc10a7c16f, type: 3}
 --- !u!95 &2039199599
 Animator:
   serializedVersion: 5
@@ -24809,6 +24826,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7257322775738860958, guid: 715715a3691a2ba4fb50101daf1a4725, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 98fbbb4679cf6054d810d942420ff521, type: 3}
     - target: {fileID: 7257322775738860958, guid: 715715a3691a2ba4fb50101daf1a4725, type: 3}
       propertyPath: Barrier
       value: 

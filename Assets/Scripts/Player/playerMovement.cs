@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject attackPrefab;
 
     public GameObject Timer;
+    
+    public Collider2D colliderToIgnore;
 
     private void Start()
     {
@@ -54,7 +56,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Vector2 pointToCheck = transform.position;
+        pointToCheck.y += -0.6f;
         if (!PlayerMovement.Alive) { SceneManager.LoadScene(5); }
+
+        if (colliderToIgnore.OverlapPoint(pointToCheck))
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), colliderToIgnore, true);
+        }
+        else
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), colliderToIgnore, false);
+        }
+
         m_Animation.SetInteger("playerSize", playerSize);
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");

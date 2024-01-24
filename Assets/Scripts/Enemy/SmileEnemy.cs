@@ -21,6 +21,7 @@ public class SmileEnemy : MonoBehaviour
     
     private AudioSource audioSource;
     public AudioClip sound;
+    public AudioClip sound2;
 
     void Start()
     {
@@ -158,6 +159,7 @@ public class SmileEnemy : MonoBehaviour
         if (other.CompareTag("Attack"))
         {
             Destroy(gameObject);
+            audioSource.PlayOneShot(sound2, 0.2f);
         }// Check if the entering collider is the one you are interested in
         else if (other.CompareTag("Player") || other.CompareTag("Barrier")) // Change "Player" to the tag of the object you want to trigger
         {

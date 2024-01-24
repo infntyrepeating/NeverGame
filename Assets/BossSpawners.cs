@@ -13,6 +13,9 @@ public class BossSpawners : MonoBehaviour
 
     public static bool boss = false;
 
+    
+    private AudioSource audioSource;
+    public AudioClip sound;
 
     
     private void Start()
@@ -20,6 +23,12 @@ public class BossSpawners : MonoBehaviour
             boss = false;
             InvokeRepeating("LaunchProjectile", 5.0f, 3.0f);
             Debug.Log("Started!");
+            
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
     }
 
     private void Update()
@@ -32,6 +41,7 @@ public class BossSpawners : MonoBehaviour
 
     private void LaunchProjectile()
     {
+        audioSource.PlayOneShot(sound, 0.2f);
         if (boss == true)
         {
             List<int> numbers = new List<int>()
