@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,9 +7,9 @@ public class Toolbar : MonoBehaviour
     public GameObject Barrier;
     public GameObject playerLoc;
 
-    public UnityEngine.UI.Image Offense;
-    public UnityEngine.UI.Image Defense;
-    public UnityEngine.UI.Image Utility;
+    public Image Offense;
+    public Image Defense;
+    public Image Utility;
 
     public static bool UtilityLocked = true;
     public static bool DefenseLocked = false; //
